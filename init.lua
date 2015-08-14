@@ -10,6 +10,15 @@ function colored_steel.register_steel(color)
 		sounds = default.node_sound_stone_defaults(),
 	})
 
+	minetest.register_node("colored_steel:glowing_block_"..color, {
+		description =  color .. " Steel Block (GLOWING)",
+		tiles = {"default_steel_block.png^[colorize:"..color..":100^colored_steel_glowing.png"},
+		is_ground_content = false,
+		light_source = 14,
+		groups = {cracky=1,level=2},
+		sounds = default.node_sound_stone_defaults(),
+	})
+
 	minetest.register_craftitem("colored_steel:steel_ingot_"..color, {
 		description = color.." Steel Ingot",
 		inventory_image = "default_steel_ingot.png^[colorize:"..color..":100",
@@ -32,9 +41,16 @@ function colored_steel.register_steel(color)
 	})
 
 	minetest.register_craft({
-		output = "colored_steel:steel_ingot_"..color.." 9",
+		output = "colored_steel:steel_ingot_"..color.." 2",
 		recipe = {
 			{"default:steel_ingot", "dye:" .. color},
+		}
+	})
+
+	minetest.register_craft({
+		output = "colored_steel:glowing_block_"..color.." 9",
+		recipe = {
+			{"colored_steel:block_"..color, "default:mese"},
 		}
 	})
 
@@ -46,5 +62,5 @@ colored_steel.register_steel("red")
 colored_steel.register_steel("black")
 colored_steel.register_steel("yellow")
 colored_steel.register_steel("blue")
-colored_steel.register_steel("grey")
 colored_steel.register_steel("magenta")
+colored_steel.register_steel("lime")
