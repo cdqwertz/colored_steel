@@ -10,6 +10,13 @@ function colored_steel.register_steel(color)
 		sounds = default.node_sound_stone_defaults(),
 	})
 
+	stairs.register_stair_and_slab("steel_"..color, "colored_steel:block_"..color,
+		{cracky = 1, level=2},
+		{"default_steel_block.png^[colorize:"..color..":100"},
+		color.. " Steel Stair",
+		color.." Steel Slab",
+		default.node_sound_stone_defaults())
+
 	minetest.register_node("colored_steel:glowing_block_"..color, {
 		description =  color .. " Steel Block (GLOWING)",
 		tiles = {"default_steel_block.png^[colorize:"..color..":100^colored_steel_glowing.png"},
@@ -59,7 +66,7 @@ function colored_steel.register_steel(color)
 	minetest.register_craft({
 		output = "colored_steel:glowing_block_"..color.." 9",
 		recipe = {
-			{"colored_steel:block_"..color, "default:mese"},
+			{"colored_steel:block_"..color, "default:mese_crystal_fragment"},
 		}
 	})
 
